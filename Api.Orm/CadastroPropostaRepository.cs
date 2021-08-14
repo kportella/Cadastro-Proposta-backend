@@ -70,11 +70,16 @@ namespace Api.Orm
            ,@USUARIO_ATUALIZACAO
            ,@DATA_ATUALIZACAO)";
 
+            string sqlEncontrarProposta = "SELECT MAX(PROPOSTA) FROM TREINA_PROPOSTAS";
+
             TreinaClientesEntity treinaClientesEntity = propostaDtoCreate.TreinaClientesEntity;
             TreinaPropostasEntity treinaPropostasEntity = propostaDtoCreate.TreinaPropostasEntity;
 
             using (var con = new SqlConnection(base.GetConnection()))
             {
+                int proposta = con.QueryFirst<int>(sqlEncontrarProposta);
+                treinaPropostasEntity.Proposta = proposta + 1;
+
                 DynamicParameters parameterProposta = new DynamicParameters();
                 parameterProposta.Add("@PROPOSTA", treinaPropostasEntity.Proposta);
                 parameterProposta.Add("@CPF", treinaPropostasEntity.CPF);
