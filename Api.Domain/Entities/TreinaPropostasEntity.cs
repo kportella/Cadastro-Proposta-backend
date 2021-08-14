@@ -15,17 +15,13 @@ namespace Api.Domain.Entities
         [MaxLength(11)]
         [Column("CPF")]
         public string CPF { get; set; }
-        [Required]
         [MaxLength(6)]
         [Column("CONVENIADA")]
         public string Conveniada { get; set; }
-        [Required]
         [Column("VLR_SOLICITADO")]
         public float Vlr_Solicitado { get; set; }
-        [Required]
         [Column("PRAZO")]
         public int Prazo { get; set; }
-        [Required]
         [MaxLength(500)]
         [Column("OBSERVACAO")]
         public string Observacao { get; set; }
