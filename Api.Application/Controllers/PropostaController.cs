@@ -3,6 +3,7 @@ using System.Net;
 using Api.Orm.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Api.Domain.Entities;
+using Api.Domain.Dtos;
 
 namespace Api.Application.Controllers
 {
@@ -18,11 +19,11 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add([FromBody] TreinaPropostasEntity treinaPropostasEntity)
+        public ActionResult Add([FromBody] PropostaDtoCreate propostaDtoCreate)
         {
             try
             {
-                _cadastroPropostaRepository.Add(treinaPropostasEntity);
+                _cadastroPropostaRepository.Add(propostaDtoCreate);
                 return Ok();
             }
             catch (ArgumentException e)
