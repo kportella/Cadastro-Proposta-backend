@@ -1,0 +1,8 @@
+C:\Projetos\backend\Api.Orm\bin\Debug\netstandard2.0\orm.deps.json
+C:\Projetos\backend\Api.Orm\bin\Debug\netstandard2.0\orm.dll
+C:\Projetos\backend\Api.Orm\bin\Debug\netstandard2.0\orm.pdb
+C:\Projetos\backend\Api.Orm\obj\Debug\netstandard2.0\orm.csprojAssemblyReference.cache
+C:\Projetos\backend\Api.Orm\obj\Debug\netstandard2.0\orm.AssemblyInfoInputs.cache
+C:\Projetos\backend\Api.Orm\obj\Debug\netstandard2.0\orm.AssemblyInfo.cs
+C:\Projetos\backend\Api.Orm\obj\Debug\netstandard2.0\orm.dll
+C:\Projetos\backend\Api.Orm\obj\Debug\netstandard2.0\orm.pdb
