@@ -72,6 +72,8 @@ namespace Api.Orm
 
             string sqlEncontrarProposta = "SELECT MAX(PROPOSTA) FROM TREINA_PROPOSTAS";
 
+            string sqlEcontrarCPF = "SELECT CPF FROM TREINA_CLIENTES WHERE CPF=@CPF";
+
             TreinaClientesEntity treinaClientesEntity = propostaDtoCreate.TreinaClientesEntity;
             TreinaPropostasEntity treinaPropostasEntity = propostaDtoCreate.TreinaPropostasEntity;
 
@@ -94,9 +96,10 @@ namespace Api.Orm
                 parameterProposta.Add("@USUARIO_ATUALIZACAO", treinaPropostasEntity.Usuario_Atualizacao);
                 parameterProposta.Add("@DATA_ATUALIZACAO", treinaPropostasEntity.Data_Atualizacao);
 
-                con.Execute(sqlProposta, parameterProposta);
-
                 DynamicParameters parametersCliente = new DynamicParameters();
+
+                DynamicParameters CPFparameter = new DynamicParameters();
+                CPFparameter.Add("@CPF", treinaClientesEntity.CPF);
 
                 parametersCliente.Add("@CPF", treinaClientesEntity.CPF);
                 parametersCliente.Add("@NOME", treinaClientesEntity.Nome);
@@ -111,7 +114,17 @@ namespace Api.Orm
                 parametersCliente.Add("@USUARIO_ATUALIZACAO", treinaClientesEntity.Usuario_Atualizacao);
                 parametersCliente.Add("@DATA_ATUALIZACAO", treinaClientesEntity.Data_Atualizacao);
 
-                con.Execute(sqlCliente, parametersCliente);
+                var encontrarCPF = con.QueryFirstOrDefault(sqlEcontrarCPF, CPFparameter);
+
+                if (encontrarCPF == null)
+                {
+                    con.Execute(sqlCliente, parametersCliente);
+                    con.Execute(sqlProposta, parameterProposta);
+                }
+                else
+                {
+                    con.Execute(sqlProposta, parameterProposta);
+                }
             }
         }
         public PropostaDtoCreate Get(int Id)
