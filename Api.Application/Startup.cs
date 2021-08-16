@@ -28,6 +28,7 @@ namespace application
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<ICadastroPropostaRepository, CadastroPropostaRepository>();
             services.AddSingleton<IClienteLoginRepository, LoginRepository>();
+            services.AddScoped<IConveniadaRepository, ConveniadaRepository>();
 
             var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");
             services.AddAuthentication(x =>
@@ -46,14 +47,6 @@ namespace application
                     ValidateAudience = false
                 };
             });
-
-            // services.AddAuthorization(auth =>
-            // {
-            //     auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-            //         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-            //         .RequireAuthenticatedUser().Build()
-            //     );
-            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
