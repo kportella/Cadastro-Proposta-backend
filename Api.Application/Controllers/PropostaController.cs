@@ -2,7 +2,6 @@ using System;
 using System.Net;
 using Api.Orm.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Api.Domain.Entities;
 using Api.Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
 
