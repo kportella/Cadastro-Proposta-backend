@@ -4,6 +4,7 @@ using Api.Orm.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Api.Domain.Entities;
 using Api.Domain.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Application.Controllers
 {
@@ -18,6 +19,7 @@ namespace Api.Application.Controllers
             _cadastroPropostaRepository = cadastroPropostaRepository;
         }
 
+        [Authorize()]
         [HttpPost]
         public ActionResult Add([FromBody] PropostaDtoCreate propostaDtoCreate)
         {

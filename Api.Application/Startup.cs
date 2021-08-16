@@ -8,6 +8,7 @@ using Api.Orm;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace application
 {
@@ -45,6 +46,14 @@ namespace application
                     ValidateAudience = false
                 };
             });
+
+            // services.AddAuthorization(auth =>
+            // {
+            //     auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+            //         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+            //         .RequireAuthenticatedUser().Build()
+            //     );
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +66,13 @@ namespace application
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseAuthentication();
-            app.UseAuthorization();
         }
     }
 }
