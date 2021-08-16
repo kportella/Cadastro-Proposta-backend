@@ -16,59 +16,75 @@ namespace Api.Orm
         }
         public void Add(PropostaDtoCreate propostaDtoCreate)
         {
+
+            string sqlAlterarCliente = @"UPDATE [dbo].[TREINA_CLIENTES]
+                            SET [CPF] = @CPF
+                                ,[NOME] = @NOME
+                                ,[DT_NASCIMENTO] = @DT_NASCIMENTO
+                                ,[GENERO] = @GENERO
+                                ,[VLR_SALARIO] = @VLR_SALARIO
+                                ,[LOGRADOURO] = @LOGRADOURO
+                                ,[NUMERO_RESIDENCIA] = @NUMERO_RESIDENCIA
+                                ,[BAIRRO] = @BAIRRO
+                                ,[CIDADE] = @CIDADE
+                                ,[CEP] = @CEP
+                                ,[USUARIO_ATUALIZACAO] = @USUARIO_ATUALIZACAO
+                                ,[DATA_ATUALIZACAO] = @DATA_ATUALIZACAO
+                            WHERE [CPF] = @CPF";
+
             string sqlProposta = @"INSERT INTO [dbo].[TREINA_PROPOSTAS]
-           ([PROPOSTA]
-           ,[CPF]
-           ,[CONVENIADA]
-           ,[VLR_SOLICITADO]
-           ,[PRAZO]
-           ,[VLR_FINANCIADO]
-           ,[SITUACAO]
-           ,[OBSERVACAO]
-           ,[DT_SITUACAO]
-           ,[USUARIO]
-           ,[USUARIO_ATUALIZACAO]
-           ,[DATA_ATUALIZACAO])
-     VALUES
-           (@PROPOSTA
-           ,@CPF
-           ,@CONVENIADA
-           ,@VLR_SOLICITADO
-           ,@PRAZO
-           ,@VLR_SOLICITADO
-           ,@SITUACAO
-           ,@OBSERVACAO
-           ,@DT_SITUACAO
-           ,@USUARIO
-           ,@USUARIO_ATUALIZACAO
-           ,@DATA_ATUALIZACAO)";
+                            ([PROPOSTA]
+                            ,[CPF]
+                            ,[CONVENIADA]
+                            ,[VLR_SOLICITADO]
+                            ,[PRAZO]
+                            ,[VLR_FINANCIADO]
+                            ,[SITUACAO]
+                            ,[OBSERVACAO]
+                            ,[DT_SITUACAO]
+                            ,[USUARIO]
+                            ,[USUARIO_ATUALIZACAO]
+                            ,[DATA_ATUALIZACAO])
+                        VALUES
+                            (@PROPOSTA
+                            ,@CPF
+                            ,@CONVENIADA
+                            ,@VLR_SOLICITADO
+                            ,@PRAZO
+                            ,@VLR_SOLICITADO
+                            ,@SITUACAO
+                            ,@OBSERVACAO
+                            ,@DT_SITUACAO
+                            ,@USUARIO
+                            ,@USUARIO_ATUALIZACAO
+                            ,@DATA_ATUALIZACAO)";
 
             string sqlCliente = @"INSERT INTO [dbo].[TREINA_CLIENTES]
-           ([CPF]
-           ,[NOME]
-           ,[DT_NASCIMENTO]
-           ,[GENERO]
-           ,[VLR_SALARIO]
-           ,[LOGRADOURO]
-           ,[NUMERO_RESIDENCIA]
-           ,[BAIRRO]
-           ,[CIDADE]
-           ,[CEP]
-           ,[USUARIO_ATUALIZACAO]
-           ,[DATA_ATUALIZACAO])
-     VALUES
-           (@CPF
-           ,@NOME
-           ,@DT_NASCIMENTO
-           ,@GENERO
-           ,@VLR_SALARIO
-           ,@LOGRADOURO
-           ,@NUMERO_RESIDENCIA
-           ,@BAIRRO
-           ,@CIDADE
-           ,@CEP
-           ,@USUARIO_ATUALIZACAO
-           ,@DATA_ATUALIZACAO)";
+                            ([CPF]
+                            ,[NOME]
+                            ,[DT_NASCIMENTO]
+                            ,[GENERO]
+                            ,[VLR_SALARIO]
+                            ,[LOGRADOURO]
+                            ,[NUMERO_RESIDENCIA]
+                            ,[BAIRRO]
+                            ,[CIDADE]
+                            ,[CEP]
+                            ,[USUARIO_ATUALIZACAO]
+                            ,[DATA_ATUALIZACAO])
+                        VALUES
+                            (@CPF
+                            ,@NOME
+                            ,@DT_NASCIMENTO
+                            ,@GENERO
+                            ,@VLR_SALARIO
+                            ,@LOGRADOURO
+                            ,@NUMERO_RESIDENCIA
+                            ,@BAIRRO
+                            ,@CIDADE
+                            ,@CEP
+                            ,@USUARIO_ATUALIZACAO
+                            ,@DATA_ATUALIZACAO)";
 
             string sqlEncontrarProposta = "SELECT MAX(PROPOSTA) FROM TREINA_PROPOSTAS";
 
@@ -123,6 +139,7 @@ namespace Api.Orm
                 }
                 else
                 {
+                    con.Execute(sqlAlterarCliente, parametersCliente);
                     con.Execute(sqlProposta, parameterProposta);
                 }
             }

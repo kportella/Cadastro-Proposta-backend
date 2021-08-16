@@ -17,8 +17,7 @@ namespace Api.Application.Controllers
         {
             _cadastroPropostaRepository = cadastroPropostaRepository;
         }
-
-        [Authorize()]
+        [Authorize]
         [HttpPost]
         public ActionResult Add([FromBody] PropostaDtoCreate propostaDtoCreate)
         {
@@ -32,5 +31,6 @@ namespace Api.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
     }
 }
