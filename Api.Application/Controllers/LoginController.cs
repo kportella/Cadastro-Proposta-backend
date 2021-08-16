@@ -1,3 +1,5 @@
+using System;
+using System.Net;
 using Api.Domain.Dtos;
 using Api.Orm.Interfaces;
 using Api.Service;
@@ -19,27 +21,34 @@ namespace Api.Application.Controllers
         [HttpPost]
         public ActionResult Authenticate([FromBody] LoginDto loginDto)
         {
-            int flag = _usuarioLoginRepository.Login(loginDto);
-
-            switch (flag)
+            try
             {
-                case 2:
-                    {
-                        return StatusCode(403, new { message = "Senha expirada" });
-                    }
-                case 1:
-                    {
-                        var token = TokenService.GenerateToken(loginDto);
-                        return Ok(new
+                int flag = _usuarioLoginRepository.Login(loginDto);
+
+                switch (flag)
+                {
+                    case 2:
                         {
-                            user = loginDto.Usuario,
-                            token = token
-                        });
-                    }
-                default:
-                    {
-                        return NotFound(new { message = "Usuário/Senha não encontrado" });
-                    }
+                            return StatusCode(403, new { message = "Senha expirada" });
+                        }
+                    case 1:
+                        {
+                            var token = TokenService.GenerateToken(loginDto);
+                            return Ok(new
+                            {
+                                user = loginDto.Usuario,
+                                token = token
+                            });
+                        }
+                    default:
+                        {
+                            return NotFound(new { message = "Usuário/Senha não encontrado" });
+                        }
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
     }

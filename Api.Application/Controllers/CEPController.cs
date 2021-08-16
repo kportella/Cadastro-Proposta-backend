@@ -15,25 +15,32 @@ namespace Api.Application.Controllers
         [HttpGet]
         public ActionResult retornarEndereco([FromBody] CEPDto CEPDto)
         {
-            string server = "https://viacep.com.br/";
-            string relativePath = "ws/" + CEPDto.CEP + "/json/";
-
-            Uri serverUri = new Uri(server);
-            Uri relativeUri = new Uri(relativePath, UriKind.Relative);
-
-            Uri fullUri = new Uri(serverUri, relativeUri);
-
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(fullUri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            using (Stream dataStream = response.GetResponseStream())
+            try
             {
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
+                string server = "https://viacep.com.br/";
+                string relativePath = "ws/" + CEPDto.CEP + "/json/";
 
-                response.Close();
+                Uri serverUri = new Uri(server);
+                Uri relativeUri = new Uri(relativePath, UriKind.Relative);
 
-                return Ok(responseFromServer);
+                Uri fullUri = new Uri(serverUri, relativeUri);
+
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(fullUri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                using (Stream dataStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(dataStream);
+                    string responseFromServer = reader.ReadToEnd();
+
+                    response.Close();
+
+                    return Ok(responseFromServer);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
     }
