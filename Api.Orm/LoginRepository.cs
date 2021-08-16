@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Api.Orm
 {
-    public class LoginRepository : ConnectorRepository, IClienteLoginRepository
+    public class LoginRepository : ConnectorRepository, IUsuarioLoginRepository
     {
         public LoginRepository(IConfiguration configuration) : base(configuration)
         {

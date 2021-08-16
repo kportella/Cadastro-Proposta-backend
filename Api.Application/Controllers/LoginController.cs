@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using Api.Domain.Dtos;
-using Api.Orm;
 using Api.Orm.Interfaces;
 using Api.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +9,17 @@ namespace Api.Application.Controllers
     [ApiController]
     public class LoginController : Controller
     {
-        private readonly IClienteLoginRepository _clienteLoginRepository;
+        private readonly IUsuarioLoginRepository _usuarioLoginRepository;
 
-        public LoginController(IClienteLoginRepository clienteLoginRepository)
+        public LoginController(IUsuarioLoginRepository usuarioLoginRepository)
         {
-            _clienteLoginRepository = clienteLoginRepository;
+            _usuarioLoginRepository = usuarioLoginRepository;
         }
 
         [HttpPost]
         public ActionResult Authenticate([FromBody] LoginDto loginDto)
         {
-            int flag = _clienteLoginRepository.Login(loginDto);
+            int flag = _usuarioLoginRepository.Login(loginDto);
 
             switch (flag)
             {

@@ -27,7 +27,7 @@ namespace application
             services.AddControllers();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<ICadastroPropostaRepository, CadastroPropostaRepository>();
-            services.AddSingleton<IClienteLoginRepository, LoginRepository>();
+            services.AddSingleton<IUsuarioLoginRepository, LoginRepository>();
             services.AddScoped<IConveniadaRepository, ConveniadaRepository>();
 
             var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");
