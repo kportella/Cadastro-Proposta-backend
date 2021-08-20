@@ -30,6 +30,13 @@ namespace application
             services.AddSingleton<IUsuarioLoginRepository, LoginRepository>();
             services.AddScoped<IConveniadaRepository, ConveniadaRepository>();
 
+            services.AddCors(o => o.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");
             services.AddAuthentication(x =>
             {
@@ -61,7 +68,11 @@ namespace application
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCors(options => options.
+                                AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader()
+                        );
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

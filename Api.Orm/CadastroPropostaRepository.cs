@@ -51,7 +51,7 @@ namespace Api.Orm
                             ,@CONVENIADA
                             ,@VLR_SOLICITADO
                             ,@PRAZO
-                            ,@VLR_SOLICITADO
+                            ,@VLR_FINANCIADO
                             ,@SITUACAO
                             ,@OBSERVACAO
                             ,@DT_SITUACAO

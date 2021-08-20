@@ -3,6 +3,7 @@ using System.Net;
 using Api.Domain.Dtos;
 using Api.Orm.Interfaces;
 using Api.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
@@ -17,7 +18,7 @@ namespace Api.Application.Controllers
         {
             _usuarioLoginRepository = usuarioLoginRepository;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Authenticate([FromBody] LoginDto loginDto)
         {
@@ -36,7 +37,6 @@ namespace Api.Application.Controllers
                             var token = TokenService.GenerateToken(loginDto);
                             return Ok(new
                             {
-                                user = loginDto.Usuario,
                                 token = token
                             });
                         }

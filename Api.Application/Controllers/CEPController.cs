@@ -12,7 +12,7 @@ namespace Api.Application.Controllers
     public class CEPController : Controller
     {
         [Authorize]
-        [HttpGet]
+        [HttpPost]
         public ActionResult retornarEndereco([FromBody] CEPDto CEPDto)
         {
             try
