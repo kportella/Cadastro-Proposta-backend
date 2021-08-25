@@ -8,6 +8,7 @@ namespace Api.Orm
         public ConnectorRepository(IConfiguration configuration)
         {
             _configuration = configuration;
+            Dapper.SqlMapper.AddTypeMap(typeof(string), System.Data.DbType.AnsiString);
         }
 
         public string GetConnection()

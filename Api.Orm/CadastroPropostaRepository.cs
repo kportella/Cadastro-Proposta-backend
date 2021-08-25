@@ -86,7 +86,10 @@ namespace Api.Orm
                             ,@USUARIO_ATUALIZACAO
                             ,@DATA_ATUALIZACAO)";
 
-            string sqlEncontrarProposta = "SELECT MAX(PROPOSTA) FROM TREINA_PROPOSTAS";
+            string sqlEncontrarProposta = @"UPDATE [dbo].[TREINA_PARAMETRO]
+                                            SET VALOR = VALOR + 1
+                                            WHERE PropostaParametros = 'UltimaProposta'
+                                            SELECT VALOR from TREINA_PARAMETRO WHERE PropostaParametros = 'UltimaProposta'";
 
             string sqlEcontrarCPF = "SELECT CPF FROM TREINA_CLIENTES WHERE CPF=@CPF";
 

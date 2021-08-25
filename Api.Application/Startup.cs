@@ -29,6 +29,7 @@ namespace application
             services.AddScoped<ICadastroPropostaRepository, CadastroPropostaRepository>();
             services.AddSingleton<IUsuarioLoginRepository, LoginRepository>();
             services.AddScoped<IConveniadaRepository, ConveniadaRepository>();
+            services.AddScoped<ICalcularPropostaRepository, CalcularPropostaRepository>();
 
             services.AddCors(o => o.AddDefaultPolicy(builder =>
             {
