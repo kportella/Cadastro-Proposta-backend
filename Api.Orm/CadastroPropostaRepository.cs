@@ -156,7 +156,7 @@ namespace Api.Orm
                 }
             }
         }
-        public PropostaDtoCreate Get(int Id)
+        public PropostaDtoCreate Get(CPFDto CPFDto)
         {
             throw new System.NotImplementedException();
         }

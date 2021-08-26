@@ -33,5 +33,20 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult Get([FromBody] CPFDto CPFDto)
+        {
+            try
+            {
+                PropostaDtoCreate propostaDtoCreate = _cadastroPropostaRepository.Get(CPFDto);
+                return Ok(propostaDtoCreate);
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
     }
 }
