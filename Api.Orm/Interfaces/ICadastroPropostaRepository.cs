@@ -7,7 +7,7 @@ namespace Api.Orm.Interfaces
     public interface ICadastroPropostaRepository
     {
         IEnumerable<PropostaDtoCreate> GetAll();
-        PropostaDtoCreate Get(CPFDto CPFDto);
+        PropostaDtoCreate Get(string CPF);
         bool Add(PropostaDtoCreate obj);
         void Remove(PropostaDtoCreate obj);
         void Update(PropostaDtoCreate obj);

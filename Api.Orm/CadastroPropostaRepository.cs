@@ -156,9 +156,60 @@ namespace Api.Orm
                 }
             }
         }
-        public PropostaDtoCreate Get(CPFDto CPFDto)
+        public PropostaDtoCreate Get(string CPF)
         {
-            throw new System.NotImplementedException();
+            // string sqlProposta = @"SELECT @ID_TREINA_PROPOSTA = ID_TREINA_PROPOSTA,
+            //                 @PROPOSTA = PROPOSTA,
+            //                 @CONVENIADA = CONVENIADA,
+            //                 @VLR_SOLICITADO = VLR_SOLICITADO,
+            //                 @PRAZO = PRAZO,
+            //                 @VLR_FINANCIADO = VLR_FINANCIADO,
+            //                 @SITUACAO = SITUACAO,
+            //                 @OBSERVACAO = OBSERVACAO,
+            //                 @DT_SITUACAO = DT_SITUACAO,
+            //                 @USUARIO = USUARIO,
+            //                 @USUARIO_ATUALIZACAO = USUARIO_ATUALIZACAO,
+            //                 @DATA_ATUALIZACAO = DATA_ATUALIZACAO
+            //             FROM TREINA_PROPOSTAS
+            //             WHERE CPF = @CPF";
+
+            // string sqlCliente = @"SELECT @ID_TREINA_CLIENTE = ID_TREINA_CLIENTE,
+            //                     @NOME = NOME,
+            //                     @DT_NASCIMENTO = DT_NASCIMENTO,
+            //                     @GENERO = GENERO,
+            //                     @VLR_SALARIO = VLR_SALARIO,
+            //                     @LOGRADOURO = LOGRADOURO,
+            //                     @NUMERO_RESIDENCIA = NUMERO_RESIDENCIA,
+            //                     @BAIRRO = BAIRRO,
+            //                     @CIDADE = CIDADE,
+            //                     @CEP = CEP,
+            //                     @USUARIO_ATUALIZACAO = USUARIO_ATUALIZACAO,
+            //                     @DATA_ATUALIZACAO = DATA_ATUALIZACAO
+            //                 FROM TREINA_CLIENTES
+            //                 WHERE CPF=@CPF";
+
+            string sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE CPF = @CPF";
+            string sqlCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF = @CPF";
+
+            TreinaClientesEntity treinaClientesEntity = new TreinaClientesEntity();
+            TreinaPropostasEntity treinaPropostasEntity = new TreinaPropostasEntity();
+
+            using (var con = new SqlConnection(base.GetConnection()))
+            {
+
+                DynamicParameters parameterCPF = new DynamicParameters();
+                parameterCPF.Add("@CPF", CPF);
+                treinaClientesEntity = con.QueryFirstOrDefault<TreinaClientesEntity>(sqlCliente, parameterCPF);
+                treinaPropostasEntity = con.QueryFirstOrDefault<TreinaPropostasEntity>(sqlProposta, parameterCPF);
+
+                return (new PropostaDtoCreate()
+                {
+                    TreinaClientesEntity = treinaClientesEntity,
+                    TreinaPropostasEntity = treinaPropostasEntity
+                });
+
+            }
+
         }
 
         public IEnumerable<PropostaDtoCreate> GetAll()

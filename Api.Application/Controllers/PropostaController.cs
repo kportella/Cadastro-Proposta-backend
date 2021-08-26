@@ -35,11 +35,12 @@ namespace Api.Application.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Get([FromBody] CPFDto CPFDto)
+        [Route("{CPF}")]
+        public ActionResult Get(string CPF)
         {
             try
             {
-                PropostaDtoCreate propostaDtoCreate = _cadastroPropostaRepository.Get(CPFDto);
+                PropostaDtoCreate propostaDtoCreate = _cadastroPropostaRepository.Get(CPF);
                 return Ok(propostaDtoCreate);
             }
             catch (ArgumentException e)
