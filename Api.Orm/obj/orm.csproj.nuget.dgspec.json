@@ -83,6 +83,9 @@
             "projectReferences": {
               "C:\\Projetos\\backend\\Api.Domain\\domain.csproj": {
                 "projectPath": "C:\\Projetos\\backend\\Api.Domain\\domain.csproj"
+              },
+              "C:\\Projetos\\backend\\Api.Service\\services.csproj": {
+                "projectPath": "C:\\Projetos\\backend\\Api.Service\\services.csproj"
               }
             }
           }
@@ -107,6 +110,70 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.118\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projetos\\backend\\Api.Service\\services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\backend\\Api.Service\\services.csproj",
+        "projectName": "services",
+        "projectPath": "C:\\Projetos\\backend\\Api.Service\\services.csproj",
+        "packagesPath": "C:\\Users\\kaue\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\backend\\Api.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kaue\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Projetos\\backend\\Api.Domain\\domain.csproj": {
+                "projectPath": "C:\\Projetos\\backend\\Api.Domain\\domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.17, )"
             }
           },
           "imports": [

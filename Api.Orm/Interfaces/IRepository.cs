@@ -6,7 +6,7 @@ namespace Api.Orm.Interfaces
     {
         IEnumerable<T> GetAll();
         T Get(int Id);
-        void Add(T obj);
+        bool Add(T obj);
         void Remove(T obj);
         void Update(T obj);
     }

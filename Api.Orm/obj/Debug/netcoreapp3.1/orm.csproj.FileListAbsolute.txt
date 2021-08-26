@@ -9,3 +9,5 @@ C:\Projetos\backend\Api.Orm\obj\Debug\netcoreapp3.1\orm.pdb
 C:\Projetos\backend\Api.Orm\bin\Debug\netcoreapp3.1\domain.dll
 C:\Projetos\backend\Api.Orm\bin\Debug\netcoreapp3.1\domain.pdb
 C:\Projetos\backend\Api.Orm\obj\Debug\netcoreapp3.1\orm.csproj.CopyComplete
+C:\Projetos\backend\Api.Orm\bin\Debug\netcoreapp3.1\services.dll
+C:\Projetos\backend\Api.Orm\bin\Debug\netcoreapp3.1\services.pdb

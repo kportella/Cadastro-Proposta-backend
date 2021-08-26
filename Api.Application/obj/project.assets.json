@@ -1459,7 +1459,8 @@
           "Dapper": "2.0.90",
           "Microsoft.Extensions.Configuration": "5.0.0",
           "System.Data.SqlClient": "4.8.2",
-          "domain": "1.0.0"
+          "domain": "1.0.0",
+          "services": "1.0.0"
         },
         "compile": {
           "bin/placeholder/orm.dll": {}

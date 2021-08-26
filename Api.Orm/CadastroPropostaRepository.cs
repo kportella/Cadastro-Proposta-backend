@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Dapper;
 using System.Data.SqlClient;
 using Api.Domain.Dtos;
+using System;
 
 namespace Api.Orm
 {
@@ -14,7 +15,7 @@ namespace Api.Orm
         {
 
         }
-        public void Add(PropostaDtoCreate propostaDtoCreate)
+        public bool Add(PropostaDtoCreate propostaDtoCreate)
         {
 
             string sqlAlterarCliente = @"UPDATE [dbo].[TREINA_CLIENTES]
@@ -98,52 +99,60 @@ namespace Api.Orm
 
             using (var con = new SqlConnection(base.GetConnection()))
             {
-                int proposta = con.QueryFirst<int>(sqlEncontrarProposta);
-                treinaPropostasEntity.Proposta = proposta + 1;
-
-                DynamicParameters parameterProposta = new DynamicParameters();
-                parameterProposta.Add("@PROPOSTA", treinaPropostasEntity.Proposta);
-                parameterProposta.Add("@CPF", treinaPropostasEntity.CPF);
-                parameterProposta.Add("@CONVENIADA", treinaPropostasEntity.Conveniada);
-                parameterProposta.Add("@VLR_SOLICITADO", treinaPropostasEntity.Vlr_Solicitado);
-                parameterProposta.Add("@PRAZO", treinaPropostasEntity.Prazo);
-                parameterProposta.Add("@VLR_FINANCIADO", treinaPropostasEntity.Vlr_Financiado);
-                parameterProposta.Add("@SITUACAO", treinaPropostasEntity.Situacao);
-                parameterProposta.Add("@OBSERVACAO", treinaPropostasEntity.Observacao);
-                parameterProposta.Add("@DT_SITUACAO", treinaPropostasEntity.Dt_Situacao);
-                parameterProposta.Add("@USUARIO", treinaPropostasEntity.Usuario);
-                parameterProposta.Add("@USUARIO_ATUALIZACAO", treinaPropostasEntity.Usuario_Atualizacao);
-                parameterProposta.Add("@DATA_ATUALIZACAO", treinaPropostasEntity.Data_Atualizacao);
-
-                DynamicParameters parametersCliente = new DynamicParameters();
-
-                DynamicParameters CPFparameter = new DynamicParameters();
-                CPFparameter.Add("@CPF", treinaClientesEntity.CPF);
-
-                parametersCliente.Add("@CPF", treinaClientesEntity.CPF);
-                parametersCliente.Add("@NOME", treinaClientesEntity.Nome);
-                parametersCliente.Add("@DT_NASCIMENTO", treinaClientesEntity.Dt_Nascimento);
-                parametersCliente.Add("@GENERO", treinaClientesEntity.Genero);
-                parametersCliente.Add("@VLR_SALARIO", treinaClientesEntity.Vlr_Salario);
-                parametersCliente.Add("@LOGRADOURO", treinaClientesEntity.Logradouro);
-                parametersCliente.Add("@NUMERO_RESIDENCIA", treinaClientesEntity.Numero_Residencia);
-                parametersCliente.Add("@BAIRRO", treinaClientesEntity.Bairro);
-                parametersCliente.Add("@CIDADE", treinaClientesEntity.Cidade);
-                parametersCliente.Add("@CEP", treinaClientesEntity.CEP);
-                parametersCliente.Add("@USUARIO_ATUALIZACAO", treinaClientesEntity.Usuario_Atualizacao);
-                parametersCliente.Add("@DATA_ATUALIZACAO", treinaClientesEntity.Data_Atualizacao);
-
-                var encontrarCPF = con.QueryFirstOrDefault(sqlEcontrarCPF, CPFparameter);
-
-                if (encontrarCPF == null)
+                try
                 {
-                    con.Execute(sqlCliente, parametersCliente);
-                    con.Execute(sqlProposta, parameterProposta);
+                    int proposta = con.QueryFirst<int>(sqlEncontrarProposta);
+                    treinaPropostasEntity.Proposta = proposta + 1;
+
+                    DynamicParameters parameterProposta = new DynamicParameters();
+                    parameterProposta.Add("@PROPOSTA", treinaPropostasEntity.Proposta);
+                    parameterProposta.Add("@CPF", treinaPropostasEntity.CPF);
+                    parameterProposta.Add("@CONVENIADA", treinaPropostasEntity.Conveniada);
+                    parameterProposta.Add("@VLR_SOLICITADO", treinaPropostasEntity.Vlr_Solicitado);
+                    parameterProposta.Add("@PRAZO", treinaPropostasEntity.Prazo);
+                    parameterProposta.Add("@VLR_FINANCIADO", treinaPropostasEntity.Vlr_Financiado);
+                    parameterProposta.Add("@SITUACAO", treinaPropostasEntity.Situacao);
+                    parameterProposta.Add("@OBSERVACAO", treinaPropostasEntity.Observacao);
+                    parameterProposta.Add("@DT_SITUACAO", treinaPropostasEntity.Dt_Situacao);
+                    parameterProposta.Add("@USUARIO", treinaPropostasEntity.Usuario);
+                    parameterProposta.Add("@USUARIO_ATUALIZACAO", treinaPropostasEntity.Usuario_Atualizacao);
+                    parameterProposta.Add("@DATA_ATUALIZACAO", treinaPropostasEntity.Data_Atualizacao);
+
+                    DynamicParameters parametersCliente = new DynamicParameters();
+
+                    DynamicParameters CPFparameter = new DynamicParameters();
+                    CPFparameter.Add("@CPF", treinaClientesEntity.CPF);
+
+                    parametersCliente.Add("@CPF", treinaClientesEntity.CPF);
+                    parametersCliente.Add("@NOME", treinaClientesEntity.Nome);
+                    parametersCliente.Add("@DT_NASCIMENTO", treinaClientesEntity.Dt_Nascimento);
+                    parametersCliente.Add("@GENERO", treinaClientesEntity.Genero);
+                    parametersCliente.Add("@VLR_SALARIO", treinaClientesEntity.Vlr_Salario);
+                    parametersCliente.Add("@LOGRADOURO", treinaClientesEntity.Logradouro);
+                    parametersCliente.Add("@NUMERO_RESIDENCIA", treinaClientesEntity.Numero_Residencia);
+                    parametersCliente.Add("@BAIRRO", treinaClientesEntity.Bairro);
+                    parametersCliente.Add("@CIDADE", treinaClientesEntity.Cidade);
+                    parametersCliente.Add("@CEP", treinaClientesEntity.CEP);
+                    parametersCliente.Add("@USUARIO_ATUALIZACAO", treinaClientesEntity.Usuario_Atualizacao);
+                    parametersCliente.Add("@DATA_ATUALIZACAO", treinaClientesEntity.Data_Atualizacao);
+
+                    var encontrarCPF = con.QueryFirstOrDefault(sqlEcontrarCPF, CPFparameter);
+
+                    if (encontrarCPF == null)
+                    {
+                        con.Execute(sqlCliente, parametersCliente);
+                        con.Execute(sqlProposta, parameterProposta);
+                    }
+                    else
+                    {
+                        con.Execute(sqlAlterarCliente, parametersCliente);
+                        con.Execute(sqlProposta, parameterProposta);
+                    }
+                    return true;
                 }
-                else
+                catch (Exception e)
                 {
-                    con.Execute(sqlAlterarCliente, parametersCliente);
-                    con.Execute(sqlProposta, parameterProposta);
+                    return false;
                 }
             }
         }

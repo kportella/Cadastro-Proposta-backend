@@ -160,6 +160,9 @@
             "projectReferences": {
               "C:\\Projetos\\backend\\Api.Domain\\domain.csproj": {
                 "projectPath": "C:\\Projetos\\backend\\Api.Domain\\domain.csproj"
+              },
+              "C:\\Projetos\\backend\\Api.Service\\services.csproj": {
+                "projectPath": "C:\\Projetos\\backend\\Api.Service\\services.csproj"
               }
             }
           }

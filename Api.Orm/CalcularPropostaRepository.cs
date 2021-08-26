@@ -1,8 +1,8 @@
 using System;
 using System.Data.SqlClient;
 using Api.Domain.Dtos;
-using Api.Domain.Entities;
 using Api.Orm.Interfaces;
+using Api.Service;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 
@@ -23,10 +23,7 @@ namespace Api.Orm
             {
 
                 double taxaFixa = con.QueryFirstOrDefault<double>(sql);
-                double taxaDeJuro = 0;
-
-                taxaDeJuro = Math.Pow(taxaFixa, calcularValorDto.Prazo);
-                return Math.Round((calcularValorDto.Vlr_Solicitado * taxaDeJuro), 2, MidpointRounding.AwayFromZero);
+                return CalcularValorSolicitadoService.CalcularValorSolicitado(calcularValorDto, taxaFixa);
             }
 
         }
