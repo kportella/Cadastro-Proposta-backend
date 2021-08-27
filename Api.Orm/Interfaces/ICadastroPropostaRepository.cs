@@ -8,7 +8,7 @@ namespace Api.Orm.Interfaces
     {
         IEnumerable<PropostaDtoCreate> GetAll();
         PropostaDtoCreate Get(string CPF);
-        bool Add(PropostaDtoCreate obj);
+        int Add(PropostaDtoCreate obj);
         void Remove(PropostaDtoCreate obj);
         void Update(PropostaDtoCreate obj);
     }

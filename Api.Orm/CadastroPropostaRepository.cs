@@ -15,7 +15,7 @@ namespace Api.Orm
         {
 
         }
-        public bool Add(PropostaDtoCreate propostaDtoCreate)
+        public int Add(PropostaDtoCreate propostaDtoCreate)
         {
 
             string sqlAlterarCliente = @"UPDATE [dbo].[TREINA_CLIENTES]
@@ -142,52 +142,24 @@ namespace Api.Orm
                     {
                         con.Execute(sqlCliente, parametersCliente);
                         con.Execute(sqlProposta, parameterProposta);
+                        return treinaPropostasEntity.Proposta;
                     }
                     else
                     {
                         con.Execute(sqlAlterarCliente, parametersCliente);
                         con.Execute(sqlProposta, parameterProposta);
+                        return treinaPropostasEntity.Proposta;
                     }
-                    return true;
+
                 }
                 catch (Exception e)
                 {
-                    return false;
+                    return 0;
                 }
             }
         }
         public PropostaDtoCreate Get(string CPF)
         {
-            // string sqlProposta = @"SELECT @ID_TREINA_PROPOSTA = ID_TREINA_PROPOSTA,
-            //                 @PROPOSTA = PROPOSTA,
-            //                 @CONVENIADA = CONVENIADA,
-            //                 @VLR_SOLICITADO = VLR_SOLICITADO,
-            //                 @PRAZO = PRAZO,
-            //                 @VLR_FINANCIADO = VLR_FINANCIADO,
-            //                 @SITUACAO = SITUACAO,
-            //                 @OBSERVACAO = OBSERVACAO,
-            //                 @DT_SITUACAO = DT_SITUACAO,
-            //                 @USUARIO = USUARIO,
-            //                 @USUARIO_ATUALIZACAO = USUARIO_ATUALIZACAO,
-            //                 @DATA_ATUALIZACAO = DATA_ATUALIZACAO
-            //             FROM TREINA_PROPOSTAS
-            //             WHERE CPF = @CPF";
-
-            // string sqlCliente = @"SELECT @ID_TREINA_CLIENTE = ID_TREINA_CLIENTE,
-            //                     @NOME = NOME,
-            //                     @DT_NASCIMENTO = DT_NASCIMENTO,
-            //                     @GENERO = GENERO,
-            //                     @VLR_SALARIO = VLR_SALARIO,
-            //                     @LOGRADOURO = LOGRADOURO,
-            //                     @NUMERO_RESIDENCIA = NUMERO_RESIDENCIA,
-            //                     @BAIRRO = BAIRRO,
-            //                     @CIDADE = CIDADE,
-            //                     @CEP = CEP,
-            //                     @USUARIO_ATUALIZACAO = USUARIO_ATUALIZACAO,
-            //                     @DATA_ATUALIZACAO = DATA_ATUALIZACAO
-            //                 FROM TREINA_CLIENTES
-            //                 WHERE CPF=@CPF";
-
             string sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE CPF = @CPF";
             string sqlCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF = @CPF";
 
