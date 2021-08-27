@@ -60,6 +60,19 @@ namespace Api.Orm
                             ,@USUARIO_ATUALIZACAO
                             ,@DATA_ATUALIZACAO)";
 
+            string sqlAlterarProposta = @"UPDATE [dbo].[TREINA_PROPOSTAS]
+                                        SET [CONVENIADA] = @CONVENIADA
+                                            ,[VLR_SOLICITADO] = @VLR_SOLICITADO
+                                            ,[PRAZO] = @PRAZO
+                                            ,[VLR_FINANCIADO] = @VLR_FINANCIADO
+                                            ,[SITUACAO] = @SITUACAO
+                                            ,[OBSERVACAO] = @OBSERVACAO
+                                            ,[DT_SITUACAO] = @DT_SITUACAO
+                                            ,[USUARIO] = @USUARIO
+                                            ,[USUARIO_ATUALIZACAO] = @USUARIO_ATUALIZACAO
+                                            ,[DATA_ATUALIZACAO] = @DATA_ATUALIZACAO
+                                        WHERE [CPF] = @CPF";
+
             string sqlCliente = @"INSERT INTO [dbo].[TREINA_CLIENTES]
                             ([CPF]
                             ,[NOME]
@@ -87,74 +100,73 @@ namespace Api.Orm
                             ,@USUARIO_ATUALIZACAO
                             ,@DATA_ATUALIZACAO)";
 
-            string sqlEncontrarProposta = @"UPDATE [dbo].[TREINA_PARAMETRO]
+            string sqlIncrementarProposta = @"UPDATE [dbo].[TREINA_PARAMETRO]
                                             SET VALOR = VALOR + 1
                                             WHERE PropostaParametros = 'UltimaProposta'
                                             SELECT VALOR from TREINA_PARAMETRO WHERE PropostaParametros = 'UltimaProposta'";
 
             string sqlEcontrarCPF = "SELECT CPF FROM TREINA_CLIENTES WHERE CPF=@CPF";
+            string sqlEncontrarProposta = "SELECT PROPOSTA FROM TREINA_PROPOSTAS WHERE CPF=@CPF";
 
             TreinaClientesEntity treinaClientesEntity = propostaDtoCreate.TreinaClientesEntity;
             TreinaPropostasEntity treinaPropostasEntity = propostaDtoCreate.TreinaPropostasEntity;
 
             using (var con = new SqlConnection(base.GetConnection()))
             {
-                try
+
+                DynamicParameters CPFparameter = new DynamicParameters();
+                CPFparameter.Add("@CPF", treinaClientesEntity.CPF);
+                var encontrarCPF = con.QueryFirstOrDefault(sqlEcontrarCPF, CPFparameter);
+
+                if (encontrarCPF == null)
                 {
-                    int proposta = con.QueryFirst<int>(sqlEncontrarProposta);
+                    int proposta = con.QueryFirst<int>(sqlIncrementarProposta);
                     treinaPropostasEntity.Proposta = proposta + 1;
-
-                    DynamicParameters parameterProposta = new DynamicParameters();
-                    parameterProposta.Add("@PROPOSTA", treinaPropostasEntity.Proposta);
-                    parameterProposta.Add("@CPF", treinaPropostasEntity.CPF);
-                    parameterProposta.Add("@CONVENIADA", treinaPropostasEntity.Conveniada);
-                    parameterProposta.Add("@VLR_SOLICITADO", treinaPropostasEntity.Vlr_Solicitado);
-                    parameterProposta.Add("@PRAZO", treinaPropostasEntity.Prazo);
-                    parameterProposta.Add("@VLR_FINANCIADO", treinaPropostasEntity.Vlr_Financiado);
-                    parameterProposta.Add("@SITUACAO", treinaPropostasEntity.Situacao);
-                    parameterProposta.Add("@OBSERVACAO", treinaPropostasEntity.Observacao);
-                    parameterProposta.Add("@DT_SITUACAO", treinaPropostasEntity.Dt_Situacao);
-                    parameterProposta.Add("@USUARIO", treinaPropostasEntity.Usuario);
-                    parameterProposta.Add("@USUARIO_ATUALIZACAO", treinaPropostasEntity.Usuario_Atualizacao);
-                    parameterProposta.Add("@DATA_ATUALIZACAO", treinaPropostasEntity.Data_Atualizacao);
-
-                    DynamicParameters parametersCliente = new DynamicParameters();
-
-                    DynamicParameters CPFparameter = new DynamicParameters();
-                    CPFparameter.Add("@CPF", treinaClientesEntity.CPF);
-
-                    parametersCliente.Add("@CPF", treinaClientesEntity.CPF);
-                    parametersCliente.Add("@NOME", treinaClientesEntity.Nome);
-                    parametersCliente.Add("@DT_NASCIMENTO", treinaClientesEntity.Dt_Nascimento);
-                    parametersCliente.Add("@GENERO", treinaClientesEntity.Genero);
-                    parametersCliente.Add("@VLR_SALARIO", treinaClientesEntity.Vlr_Salario);
-                    parametersCliente.Add("@LOGRADOURO", treinaClientesEntity.Logradouro);
-                    parametersCliente.Add("@NUMERO_RESIDENCIA", treinaClientesEntity.Numero_Residencia);
-                    parametersCliente.Add("@BAIRRO", treinaClientesEntity.Bairro);
-                    parametersCliente.Add("@CIDADE", treinaClientesEntity.Cidade);
-                    parametersCliente.Add("@CEP", treinaClientesEntity.CEP);
-                    parametersCliente.Add("@USUARIO_ATUALIZACAO", treinaClientesEntity.Usuario_Atualizacao);
-                    parametersCliente.Add("@DATA_ATUALIZACAO", treinaClientesEntity.Data_Atualizacao);
-
-                    var encontrarCPF = con.QueryFirstOrDefault(sqlEcontrarCPF, CPFparameter);
-
-                    if (encontrarCPF == null)
-                    {
-                        con.Execute(sqlCliente, parametersCliente);
-                        con.Execute(sqlProposta, parameterProposta);
-                        return treinaPropostasEntity.Proposta;
-                    }
-                    else
-                    {
-                        con.Execute(sqlAlterarCliente, parametersCliente);
-                        con.Execute(sqlProposta, parameterProposta);
-                        return treinaPropostasEntity.Proposta;
-                    }
-
                 }
-                catch (Exception e)
+
+                DynamicParameters parameterProposta = new DynamicParameters();
+                parameterProposta.Add("@PROPOSTA", treinaPropostasEntity.Proposta);
+                parameterProposta.Add("@CPF", treinaPropostasEntity.CPF);
+                parameterProposta.Add("@CONVENIADA", treinaPropostasEntity.Conveniada);
+                parameterProposta.Add("@VLR_SOLICITADO", treinaPropostasEntity.Vlr_Solicitado);
+                parameterProposta.Add("@PRAZO", treinaPropostasEntity.Prazo);
+                parameterProposta.Add("@VLR_FINANCIADO", treinaPropostasEntity.Vlr_Financiado);
+                parameterProposta.Add("@SITUACAO", treinaPropostasEntity.Situacao);
+                parameterProposta.Add("@OBSERVACAO", treinaPropostasEntity.Observacao);
+                parameterProposta.Add("@DT_SITUACAO", treinaPropostasEntity.Dt_Situacao);
+                parameterProposta.Add("@USUARIO", treinaPropostasEntity.Usuario);
+                parameterProposta.Add("@USUARIO_ATUALIZACAO", treinaPropostasEntity.Usuario_Atualizacao);
+                parameterProposta.Add("@DATA_ATUALIZACAO", treinaPropostasEntity.Data_Atualizacao);
+
+                DynamicParameters parametersCliente = new DynamicParameters();
+
+
+                parametersCliente.Add("@CPF", treinaClientesEntity.CPF);
+                parametersCliente.Add("@NOME", treinaClientesEntity.Nome);
+                parametersCliente.Add("@DT_NASCIMENTO", treinaClientesEntity.Dt_Nascimento);
+                parametersCliente.Add("@GENERO", treinaClientesEntity.Genero);
+                parametersCliente.Add("@VLR_SALARIO", treinaClientesEntity.Vlr_Salario);
+                parametersCliente.Add("@LOGRADOURO", treinaClientesEntity.Logradouro);
+                parametersCliente.Add("@NUMERO_RESIDENCIA", treinaClientesEntity.Numero_Residencia);
+                parametersCliente.Add("@BAIRRO", treinaClientesEntity.Bairro);
+                parametersCliente.Add("@CIDADE", treinaClientesEntity.Cidade);
+                parametersCliente.Add("@CEP", treinaClientesEntity.CEP);
+                parametersCliente.Add("@USUARIO_ATUALIZACAO", treinaClientesEntity.Usuario_Atualizacao);
+                parametersCliente.Add("@DATA_ATUALIZACAO", treinaClientesEntity.Data_Atualizacao);
+
+
+                if (encontrarCPF == null)
                 {
-                    return 0;
+                    con.Execute(sqlCliente, parametersCliente);
+                    con.Execute(sqlProposta, parameterProposta);
+                    return treinaPropostasEntity.Proposta;
+                }
+                else
+                {
+                    con.Execute(sqlAlterarCliente, parametersCliente);
+                    con.Execute(sqlAlterarProposta, parameterProposta);
+                    return con.QueryFirstOrDefault<int>(sqlEncontrarProposta, CPFparameter);
+
                 }
             }
         }
