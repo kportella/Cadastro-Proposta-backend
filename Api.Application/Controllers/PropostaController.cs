@@ -4,6 +4,7 @@ using Api.Orm.Interfaces;
 using Api.Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Api.Application.Controllers
 {
@@ -41,6 +42,20 @@ namespace Api.Application.Controllers
             {
                 PropostaDtoCreate propostaDtoCreate = _cadastroPropostaRepository.Get(CPF);
                 return Ok(propostaDtoCreate);
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+        [HttpGet]
+        [Route("usuario/{usuario}")]
+        public ActionResult GetAll(string usuario)
+        {
+            try
+            {
+                List<PropostaDtoCreate> listPropostaDtoCreate = _cadastroPropostaRepository.GetAll(usuario);
+                return Ok(listPropostaDtoCreate);
             }
             catch (ArgumentException e)
             {

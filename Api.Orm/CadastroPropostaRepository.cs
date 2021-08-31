@@ -196,9 +196,34 @@ namespace Api.Orm
 
         }
 
-        public IEnumerable<PropostaDtoCreate> GetAll()
+        public List<PropostaDtoCreate> GetAll(string usuario)
         {
-            throw new System.NotImplementedException();
+            string sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE USUARIO=@USUARIO";
+            string slqCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF=@CPF";
+
+            TreinaClientesEntity treinaClientesEntity = new TreinaClientesEntity();
+            List<PropostaDtoCreate> listPropostaDtoCreate = new List<PropostaDtoCreate>();
+
+            using (var con = new SqlConnection(base.GetConnection()))
+            {
+                DynamicParameters parameterUsuario = new DynamicParameters();
+                parameterUsuario.Add("@USUARIO", usuario);
+                IEnumerable<TreinaPropostasEntity> listTreinaPropostaEntity = con.Query<TreinaPropostasEntity>(sqlProposta, parameterUsuario);
+
+                foreach (TreinaPropostasEntity item in listTreinaPropostaEntity)
+                {
+                    DynamicParameters parameterCPF = new DynamicParameters();
+                    parameterCPF.Add("@CPF", item.CPF);
+                    treinaClientesEntity = con.QueryFirstOrDefault<TreinaClientesEntity>(slqCliente, parameterCPF);
+                    listPropostaDtoCreate.Add(new PropostaDtoCreate
+                    {
+                        TreinaClientesEntity = treinaClientesEntity,
+                        TreinaPropostasEntity = item
+                    });
+                }
+                return listPropostaDtoCreate;
+
+            }
         }
 
         public void Remove(PropostaDtoCreate treinaPropostasEntity)
