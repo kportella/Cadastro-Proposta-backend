@@ -30,6 +30,7 @@ namespace application
             services.AddSingleton<IUsuarioLoginRepository, LoginRepository>();
             services.AddScoped<IConveniadaRepository, ConveniadaRepository>();
             services.AddScoped<ICalcularPropostaRepository, CalcularPropostaRepository>();
+            services.AddScoped<ISituacaoRepository, SituacaoRepository>();
 
             services.AddCors(o => o.AddDefaultPolicy(builder =>
             {
