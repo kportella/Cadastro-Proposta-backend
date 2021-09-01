@@ -33,7 +33,7 @@ namespace Api.Application.Controllers
                     Vlr_Solicitado = Vlr_Solicitado
                 });
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
 
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);

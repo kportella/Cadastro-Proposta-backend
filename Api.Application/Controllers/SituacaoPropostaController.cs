@@ -28,7 +28,7 @@ namespace Api.Application.Controllers
                     Descricao = _situacaoRepository.ConsultarDescricao(situacao)
                 });
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
@@ -41,7 +41,7 @@ namespace Api.Application.Controllers
             {
                 return Ok(_situacaoRepository.TodasDescricoes());
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }

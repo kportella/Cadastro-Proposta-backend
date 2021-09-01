@@ -29,7 +29,7 @@ namespace Api.Application.Controllers
                 IEnumerable<ConveniadaDto> listConveniada = _conveniadaRepository.GetAll();
                 return Ok(listConveniada);
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }

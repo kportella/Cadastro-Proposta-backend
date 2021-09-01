@@ -27,7 +27,7 @@ namespace Api.Application.Controllers
                 int numeroProposta = _cadastroPropostaRepository.Add(propostaDtoCreate);
                 return Ok(numeroProposta);
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
@@ -43,7 +43,7 @@ namespace Api.Application.Controllers
                 PropostaDtoCreate propostaDtoCreate = _cadastroPropostaRepository.Get(CPF);
                 return Ok(propostaDtoCreate);
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
@@ -57,7 +57,7 @@ namespace Api.Application.Controllers
                 List<PropostaDtoCreate> listPropostaDtoCreate = _cadastroPropostaRepository.GetAll(usuario);
                 return Ok(listPropostaDtoCreate);
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }

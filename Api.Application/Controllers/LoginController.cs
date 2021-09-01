@@ -46,7 +46,7 @@ namespace Api.Application.Controllers
                         }
                 }
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
