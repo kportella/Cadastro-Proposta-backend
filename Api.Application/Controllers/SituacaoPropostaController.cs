@@ -33,5 +33,18 @@ namespace Api.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
+        [Authorize]
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            try
+            {
+                return Ok(_situacaoRepository.TodasDescricoes());
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }

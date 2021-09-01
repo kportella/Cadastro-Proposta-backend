@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using Api.Domain.Dtos;
 using Api.Orm.Interfaces;
 using Dapper;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +24,16 @@ namespace Api.Orm
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@SITUACAO", situacao);
                 return con.QueryFirstOrDefault<string>(sqlConsultarDescricao, parameters);
+            }
+        }
+
+        public List<SituacaoDto> TodasDescricoes()
+        {
+            string sql = "SELECT SITUACAO, DESCRICAO FROM TREINA_SITUACAO";
+
+            using (var con = new SqlConnection(base.GetConnection()))
+            {
+                return con.Query<SituacaoDto>(sql).ToList();
             }
         }
     }
