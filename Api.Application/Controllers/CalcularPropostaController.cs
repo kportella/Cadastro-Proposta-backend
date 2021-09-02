@@ -27,7 +27,7 @@ namespace Api.Application.Controllers
 
             try
             {
-                double Vlr_Solicitado = _calcularPropostaRepository.CalcularValorSolicitado(calcularValorDto);
+                var Vlr_Solicitado = _calcularPropostaRepository.CalcularValorSolicitado(calcularValorDto);
                 return Ok(new
                 {
                     Vlr_Solicitado = Vlr_Solicitado

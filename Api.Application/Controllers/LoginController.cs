@@ -24,7 +24,7 @@ namespace Api.Application.Controllers
         {
             try
             {
-                int flag = _usuarioLoginRepository.Login(loginDto);
+                var flag = _usuarioLoginRepository.Login(loginDto);
 
                 switch (flag)
                 {

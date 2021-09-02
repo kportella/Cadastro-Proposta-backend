@@ -26,7 +26,7 @@ namespace Api.Application.Controllers
         public async Task<ActionResult> retornarEndereco([FromBody] CEPDto CEPDto)
         {
             ProvedorCEP provedor = new ProvedorCEP();
-            string response = await provedor.BuscarCEP(_clientFactory, CEPDto.CEP);
+            var response = await provedor.BuscarCEP(_clientFactory, CEPDto.CEP);
             return Ok(response);
 
         }

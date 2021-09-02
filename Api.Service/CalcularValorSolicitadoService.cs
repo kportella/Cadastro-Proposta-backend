@@ -7,9 +7,7 @@ namespace Api.Service
     {
         public static double CalcularValorSolicitado(CalcularValorDto calcularValorDto, double taxaFixa)
         {
-            double taxaDeJuro = 0;
-
-            taxaDeJuro = Math.Pow(taxaFixa, calcularValorDto.Prazo);
+            var taxaDeJuro = Math.Pow(taxaFixa, calcularValorDto.Prazo);
             return Math.Round((calcularValorDto.Vlr_Solicitado * taxaDeJuro), 2, MidpointRounding.AwayFromZero);
         }
 

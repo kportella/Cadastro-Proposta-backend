@@ -16,7 +16,7 @@ namespace Api.Orm
         }
         public List<ConveniadaDto> GetAll()
         {
-            string sql = "SELECT CONVENIADA, DESCRICAO FROM TREINA_CONVENIADAS";
+            var sql = "SELECT CONVENIADA, DESCRICAO FROM TREINA_CONVENIADAS";
 
             using (var con = new SqlConnection(base.GetConnection()))
             {

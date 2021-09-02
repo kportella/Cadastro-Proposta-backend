@@ -16,7 +16,7 @@ namespace Api.Orm
             using (Stream dataStream = await client.GetStreamAsync($"/ws/{CEP}/json/"))
             {
                 StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
+                var responseFromServer = reader.ReadToEnd();
                 return responseFromServer;
             }
         }

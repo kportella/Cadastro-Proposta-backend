@@ -17,7 +17,7 @@ namespace Api.Orm
 
         public string ConsultarDescricao(string situacao)
         {
-            string sqlConsultarDescricao = "  SELECT DESCRICAO FROM TREINA_SITUACAO WHERE SITUACAO = @SITUACAO";
+            var sqlConsultarDescricao = "  SELECT DESCRICAO FROM TREINA_SITUACAO WHERE SITUACAO = @SITUACAO";
 
             using (var con = new SqlConnection(base.GetConnection()))
             {
@@ -29,7 +29,7 @@ namespace Api.Orm
 
         public List<SituacaoDto> TodasDescricoes()
         {
-            string sql = "SELECT SITUACAO, DESCRICAO FROM TREINA_SITUACAO";
+            var sql = "SELECT SITUACAO, DESCRICAO FROM TREINA_SITUACAO";
 
             using (var con = new SqlConnection(base.GetConnection()))
             {

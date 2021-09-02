@@ -15,7 +15,7 @@ namespace Api.Orm
 
         public int Login(LoginDto loginDto)
         {
-            string sql = @"SELECT [dbo].[F_LOGIN_USUARIO] (
+            var sql = @"SELECT [dbo].[F_LOGIN_USUARIO] (
                         @USUARIO,
                         @SENHA)";
 

@@ -24,7 +24,7 @@ namespace Api.Application.Controllers
         {
             try
             {
-                int numeroProposta = _cadastroPropostaRepository.Add(propostaDtoCreate);
+                var numeroProposta = _cadastroPropostaRepository.Add(propostaDtoCreate);
                 return Ok(numeroProposta);
             }
             catch (Exception e)

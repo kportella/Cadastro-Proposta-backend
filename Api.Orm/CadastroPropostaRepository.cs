@@ -120,7 +120,7 @@ namespace Api.Orm
 
                 if (encontrarCPF == null)
                 {
-                    int proposta = con.QueryFirst<int>(sqlIncrementarProposta);
+                    var proposta = con.QueryFirst<int>(sqlIncrementarProposta);
                     treinaPropostasEntity.Proposta = proposta + 1;
                 }
 
@@ -172,8 +172,8 @@ namespace Api.Orm
         }
         public PropostaDtoCreate Get(string CPF)
         {
-            string sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE CPF = @CPF";
-            string sqlCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF = @CPF";
+            var sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE CPF = @CPF";
+            var sqlCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF = @CPF";
 
             TreinaClientesEntity treinaClientesEntity = new TreinaClientesEntity();
             TreinaPropostasEntity treinaPropostasEntity = new TreinaPropostasEntity();
@@ -198,8 +198,8 @@ namespace Api.Orm
 
         public List<PropostaDtoCreate> GetAll(string usuario)
         {
-            string sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE USUARIO=@USUARIO";
-            string slqCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF=@CPF";
+            var sqlProposta = "SELECT * FROM TREINA_PROPOSTAS WHERE USUARIO=@USUARIO";
+            var slqCliente = "SELECT * FROM TREINA_CLIENTES WHERE CPF=@CPF";
 
             TreinaClientesEntity treinaClientesEntity = new TreinaClientesEntity();
             List<PropostaDtoCreate> listPropostaDtoCreate = new List<PropostaDtoCreate>();

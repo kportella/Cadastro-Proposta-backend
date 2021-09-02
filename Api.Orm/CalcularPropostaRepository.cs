@@ -17,12 +17,12 @@ namespace Api.Orm
         public double CalcularValorSolicitado(CalcularValorDto calcularValorDto)
         {
 
-            string sql = "SELECT VALOR from TREINA_PARAMETRO WHERE PropostaParametros = 'JuroComposto'";
+            var sql = "SELECT VALOR from TREINA_PARAMETRO WHERE PropostaParametros = 'JuroComposto'";
 
             using (var con = new SqlConnection(base.GetConnection()))
             {
 
-                double taxaFixa = con.QueryFirstOrDefault<double>(sql);
+                var taxaFixa = con.QueryFirstOrDefault<double>(sql);
                 return CalcularValorSolicitadoService.CalcularValorSolicitado(calcularValorDto, taxaFixa);
             }
 
