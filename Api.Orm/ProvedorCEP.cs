@@ -1,23 +1,22 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Api.Orm
 {
     public class ProvedorCEP
     {
-        public string BuscarCEP(string cep)
+        public async Task<string> BuscarCEP(IHttpClientFactory _clientFactory, string CEP)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://viacep.com.br/ws/" + cep + "/json/");
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            var client = _clientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://viacep.com.br");
 
-            using (Stream dataStream = response.GetResponseStream())
+            using (Stream dataStream = await client.GetStreamAsync($"/ws/{CEP}/json/"))
             {
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
-
-                response.Close();
-
                 return responseFromServer;
             }
         }

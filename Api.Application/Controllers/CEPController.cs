@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Api.Domain.Dtos;
 using Api.Orm;
 using Microsoft.AspNetCore.Authorization;
@@ -12,19 +14,21 @@ namespace Api.Application.Controllers
     [ApiController]
     public class CEPController : Controller
     {
+        private readonly IHttpClientFactory _clientFactory;
+
+        public CEPController(IHttpClientFactory clientFactory)
+        {
+            _clientFactory = clientFactory;
+        }
+
         [Authorize]
         [HttpPost]
-        public ActionResult retornarEndereco([FromBody] CEPDto CEPDto)
+        public async Task<ActionResult> retornarEndereco([FromBody] CEPDto CEPDto)
         {
-            try
-            {
-                ProvedorCEP provedor = new ProvedorCEP();
-                return Ok(provedor.BuscarCEP(CEPDto.CEP));
-            }
-            catch (Exception e)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
-            }
+            ProvedorCEP provedor = new ProvedorCEP();
+            string response = await provedor.BuscarCEP(_clientFactory, CEPDto.CEP);
+            return Ok(response);
+
         }
     }
 }
