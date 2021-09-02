@@ -126,32 +126,32 @@ namespace Api.Orm
 
                 DynamicParameters parameterProposta = new DynamicParameters();
                 parameterProposta.Add("@PROPOSTA", treinaPropostasEntity.Proposta);
-                parameterProposta.Add("@CPF", treinaPropostasEntity.CPF);
-                parameterProposta.Add("@CONVENIADA", treinaPropostasEntity.Conveniada);
+                parameterProposta.Add("@CPF", new DbString { Value = treinaPropostasEntity.CPF, IsFixedLength = true, IsAnsi = true, Length = 11 });
+                parameterProposta.Add("@CONVENIADA", new DbString { Value = treinaPropostasEntity.Conveniada, IsFixedLength = true, IsAnsi = true, Length = 6 });
                 parameterProposta.Add("@VLR_SOLICITADO", treinaPropostasEntity.Vlr_Solicitado);
                 parameterProposta.Add("@PRAZO", treinaPropostasEntity.Prazo);
                 parameterProposta.Add("@VLR_FINANCIADO", treinaPropostasEntity.Vlr_Financiado);
-                parameterProposta.Add("@SITUACAO", treinaPropostasEntity.Situacao);
-                parameterProposta.Add("@OBSERVACAO", treinaPropostasEntity.Observacao);
+                parameterProposta.Add("@SITUACAO", new DbString { Value = treinaPropostasEntity.Situacao, IsAnsi = true, IsFixedLength = true, Length = 2 });
+                parameterProposta.Add("@OBSERVACAO", new DbString { Value = treinaPropostasEntity.Observacao, IsFixedLength = false, IsAnsi = true });
                 parameterProposta.Add("@DT_SITUACAO", treinaPropostasEntity.Dt_Situacao);
-                parameterProposta.Add("@USUARIO", treinaPropostasEntity.Usuario);
-                parameterProposta.Add("@USUARIO_ATUALIZACAO", treinaPropostasEntity.Usuario_Atualizacao);
+                parameterProposta.Add("@USUARIO", new DbString { Value = treinaPropostasEntity.Usuario, IsAnsi = true, IsFixedLength = true, Length = 10 });
+                parameterProposta.Add("@USUARIO_ATUALIZACAO", new DbString { Value = treinaPropostasEntity.Usuario_Atualizacao, IsAnsi = true, IsFixedLength = true, Length = 10 });
                 parameterProposta.Add("@DATA_ATUALIZACAO", treinaPropostasEntity.Data_Atualizacao);
 
                 DynamicParameters parametersCliente = new DynamicParameters();
 
 
-                parametersCliente.Add("@CPF", treinaClientesEntity.CPF);
-                parametersCliente.Add("@NOME", treinaClientesEntity.Nome);
+                parametersCliente.Add("@CPF", new DbString { Value = treinaPropostasEntity.CPF, IsFixedLength = true, IsAnsi = true, Length = 11 });
+                parametersCliente.Add("@NOME", new DbString { Value = treinaClientesEntity.Nome, IsFixedLength = false, IsAnsi = true });
                 parametersCliente.Add("@DT_NASCIMENTO", treinaClientesEntity.Dt_Nascimento);
                 parametersCliente.Add("@GENERO", treinaClientesEntity.Genero);
                 parametersCliente.Add("@VLR_SALARIO", treinaClientesEntity.Vlr_Salario);
-                parametersCliente.Add("@LOGRADOURO", treinaClientesEntity.Logradouro);
-                parametersCliente.Add("@NUMERO_RESIDENCIA", treinaClientesEntity.Numero_Residencia);
-                parametersCliente.Add("@BAIRRO", treinaClientesEntity.Bairro);
-                parametersCliente.Add("@CIDADE", treinaClientesEntity.Cidade);
-                parametersCliente.Add("@CEP", treinaClientesEntity.CEP);
-                parametersCliente.Add("@USUARIO_ATUALIZACAO", treinaClientesEntity.Usuario_Atualizacao);
+                parametersCliente.Add("@LOGRADOURO", new DbString { Value = treinaClientesEntity.Logradouro, IsFixedLength = false, IsAnsi = true });
+                parametersCliente.Add("@NUMERO_RESIDENCIA", new DbString { Value = treinaClientesEntity.Numero_Residencia, IsAnsi = true, IsFixedLength = true, Length = 10 });
+                parametersCliente.Add("@BAIRRO", new DbString { Value = treinaClientesEntity.Bairro, IsFixedLength = false, IsAnsi = true });
+                parametersCliente.Add("@CIDADE", new DbString { Value = treinaClientesEntity.Cidade, IsAnsi = true, IsFixedLength = false });
+                parametersCliente.Add("@CEP", new DbString { Value = treinaClientesEntity.CEP, IsFixedLength = true, IsAnsi = true, Length = 8 });
+                parametersCliente.Add("@USUARIO_ATUALIZACAO", new DbString { Value = treinaClientesEntity.Usuario_Atualizacao, IsAnsi = true, IsFixedLength = true, Length = 10 });
                 parametersCliente.Add("@DATA_ATUALIZACAO", treinaClientesEntity.Data_Atualizacao);
 
 
@@ -182,7 +182,7 @@ namespace Api.Orm
             {
 
                 DynamicParameters parameterCPF = new DynamicParameters();
-                parameterCPF.Add("@CPF", CPF);
+                parameterCPF.Add("@CPF", new DbString { Value = CPF, IsFixedLength = true, IsAnsi = true, Length = 11 });
                 treinaClientesEntity = con.QueryFirstOrDefault<TreinaClientesEntity>(sqlCliente, parameterCPF);
                 treinaPropostasEntity = con.QueryFirstOrDefault<TreinaPropostasEntity>(sqlProposta, parameterCPF);
 
@@ -207,13 +207,13 @@ namespace Api.Orm
             using (var con = new SqlConnection(base.GetConnection()))
             {
                 DynamicParameters parameterUsuario = new DynamicParameters();
-                parameterUsuario.Add("@USUARIO", usuario);
+                parameterUsuario.Add("@USUARIO", new DbString { Value = usuario, IsAnsi = true, IsFixedLength = true, Length = 10 });
                 IEnumerable<TreinaPropostasEntity> listTreinaPropostaEntity = con.Query<TreinaPropostasEntity>(sqlProposta, parameterUsuario);
 
                 foreach (TreinaPropostasEntity item in listTreinaPropostaEntity)
                 {
                     DynamicParameters parameterCPF = new DynamicParameters();
-                    parameterCPF.Add("@CPF", item.CPF);
+                    parameterCPF.Add("@CPF", new DbString { Value = item.CPF, IsFixedLength = true, IsAnsi = true, Length = 11 });
                     treinaClientesEntity = con.QueryFirstOrDefault<TreinaClientesEntity>(slqCliente, parameterCPF);
                     listPropostaDtoCreate.Add(new PropostaDtoCreate
                     {

@@ -22,7 +22,7 @@ namespace Api.Orm
             using (var con = new SqlConnection(base.GetConnection()))
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@SITUACAO", situacao);
+                parameters.Add("@SITUACAO", new DbString { Value = situacao, IsAnsi = true, IsFixedLength = true, Length = 2 });
                 return con.QueryFirstOrDefault<string>(sqlConsultarDescricao, parameters);
             }
         }

@@ -23,8 +23,8 @@ namespace Api.Orm
             {
                 DynamicParameters parameters = new DynamicParameters();
 
-                parameters.Add("@USUARIO", loginDto.Usuario);
-                parameters.Add("@SENHA", loginDto.Senha);
+                parameters.Add("@USUARIO", new DbString { Value = loginDto.Usuario, IsAnsi = true, IsFixedLength = true, Length = 10 });
+                parameters.Add("@SENHA", new DbString { Value = loginDto.Senha, IsAnsi = true, IsFixedLength = true, Length = 10 });
 
                 return (con.QueryFirstOrDefault<int>(sql, parameters));
             }
