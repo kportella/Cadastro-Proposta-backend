@@ -1,4 +1,4 @@
-namespace Api.Domain.Dtos
+namespace Api.Service.Dtos
 {
     public class EnderecoDto
     {

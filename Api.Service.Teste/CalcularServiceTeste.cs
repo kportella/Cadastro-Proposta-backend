@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Api.Service;
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 
 namespace serviceteste
 {

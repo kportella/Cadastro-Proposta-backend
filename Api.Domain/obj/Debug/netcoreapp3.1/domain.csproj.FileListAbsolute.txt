@@ -6,3 +6,11 @@ C:\Projetos\backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.AssemblyInfoInputs
 C:\Projetos\backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.AssemblyInfo.cs
 C:\Projetos\backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.dll
 C:\Projetos\backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.pdb
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\bin\Debug\netcoreapp3.1\domain.deps.json
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\bin\Debug\netcoreapp3.1\domain.dll
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\bin\Debug\netcoreapp3.1\domain.pdb
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.csprojAssemblyReference.cache
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.AssemblyInfoInputs.cache
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.AssemblyInfo.cs
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.dll
+C:\Projetos\Cadastro-Proposta-backend\Api.Domain\obj\Debug\netcoreapp3.1\domain.pdb

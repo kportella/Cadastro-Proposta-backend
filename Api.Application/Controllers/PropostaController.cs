@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using Api.Orm.Interfaces;
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

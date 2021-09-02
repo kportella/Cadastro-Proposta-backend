@@ -5009,11 +5009,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\backend\\Api.Orm\\orm.csproj",
+      "projectUniqueName": "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Orm\\orm.csproj",
       "projectName": "orm",
-      "projectPath": "C:\\Projetos\\backend\\Api.Orm\\orm.csproj",
+      "projectPath": "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Orm\\orm.csproj",
       "packagesPath": "C:\\Users\\kaue\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\backend\\Api.Orm\\obj\\",
+      "outputPath": "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Orm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kaue\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5027,11 +5027,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Projetos\\backend\\Api.Domain\\domain.csproj": {
-              "projectPath": "C:\\Projetos\\backend\\Api.Domain\\domain.csproj"
+            "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Domain\\domain.csproj": {
+              "projectPath": "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Domain\\domain.csproj"
             },
-            "C:\\Projetos\\backend\\Api.Service\\services.csproj": {
-              "projectPath": "C:\\Projetos\\backend\\Api.Service\\services.csproj"
+            "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Service\\services.csproj": {
+              "projectPath": "C:\\Projetos\\Cadastro-Proposta-backend\\Api.Service\\services.csproj"
             }
           }
         }

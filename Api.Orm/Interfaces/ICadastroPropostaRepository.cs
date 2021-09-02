@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 using Api.Domain.Entities;
 
 namespace Api.Orm.Interfaces

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 using Api.Orm.Interfaces;
 using Dapper;
 using Microsoft.Extensions.Configuration;

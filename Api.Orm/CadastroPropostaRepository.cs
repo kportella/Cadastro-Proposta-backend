@@ -4,7 +4,7 @@ using Api.Domain.Entities;
 using System.Collections.Generic;
 using Dapper;
 using System.Data.SqlClient;
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 using System;
 
 namespace Api.Orm

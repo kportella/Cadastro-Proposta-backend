@@ -1,4 +1,4 @@
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 
 namespace Api.Orm.Interfaces
 {

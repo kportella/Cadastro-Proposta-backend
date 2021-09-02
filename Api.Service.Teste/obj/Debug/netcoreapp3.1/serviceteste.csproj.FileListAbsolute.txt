@@ -102,3 +102,5 @@ C:\Projetos\backend\Api.Service.Teste\obj\Debug\netcoreapp3.1\serviceteste.cspro
 C:\Projetos\backend\Api.Service.Teste\obj\Debug\netcoreapp3.1\serviceteste.dll
 C:\Projetos\backend\Api.Service.Teste\obj\Debug\netcoreapp3.1\serviceteste.pdb
 c:\Projetos\backend\Api.Service.Teste\obj\Debug\netcoreapp3.1\serviceteste.csprojAssemblyReference.cache
+C:\Projetos\Cadastro-Proposta-backend\Api.Service.Teste\obj\Debug\netcoreapp3.1\serviceteste.dll
+C:\Projetos\Cadastro-Proposta-backend\Api.Service.Teste\obj\Debug\netcoreapp3.1\serviceteste.pdb

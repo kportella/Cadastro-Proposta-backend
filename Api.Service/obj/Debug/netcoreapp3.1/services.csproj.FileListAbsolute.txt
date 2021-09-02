@@ -9,3 +9,14 @@ C:\Projetos\backend\Api.Service\obj\Debug\netcoreapp3.1\services.pdb
 C:\Projetos\backend\Api.Service\bin\Debug\netcoreapp3.1\domain.dll
 C:\Projetos\backend\Api.Service\bin\Debug\netcoreapp3.1\domain.pdb
 C:\Projetos\backend\Api.Service\obj\Debug\netcoreapp3.1\services.csproj.CopyComplete
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\obj\Debug\netcoreapp3.1\services.csprojAssemblyReference.cache
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\obj\Debug\netcoreapp3.1\services.AssemblyInfoInputs.cache
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\obj\Debug\netcoreapp3.1\services.AssemblyInfo.cs
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\obj\Debug\netcoreapp3.1\services.dll
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\obj\Debug\netcoreapp3.1\services.pdb
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\bin\Debug\netcoreapp3.1\services.deps.json
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\bin\Debug\netcoreapp3.1\services.dll
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\bin\Debug\netcoreapp3.1\services.pdb
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\bin\Debug\netcoreapp3.1\domain.dll
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\bin\Debug\netcoreapp3.1\domain.pdb
+C:\Projetos\Cadastro-Proposta-backend\Api.Service\obj\Debug\netcoreapp3.1\services.csproj.CopyComplete

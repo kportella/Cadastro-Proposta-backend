@@ -1,6 +1,6 @@
 using System;
 using System.Net;
-using Api.Domain.Dtos;
+using Api.Service.Dtos;
 using Api.Orm.Interfaces;
 using Api.Service;
 using Microsoft.AspNetCore.Authorization;

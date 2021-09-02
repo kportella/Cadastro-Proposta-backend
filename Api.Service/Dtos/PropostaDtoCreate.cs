@@ -1,6 +1,6 @@
 using Api.Domain.Entities;
 
-namespace Api.Domain.Dtos
+namespace Api.Service.Dtos
 {
     public class PropostaDtoCreate
     {
