@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using MassTransit;
+using System;
 
 namespace application
 {
@@ -40,6 +42,18 @@ namespace application
             }));
 
             services.AddHttpClient();
+
+            services.AddMassTransit(x =>
+            {
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.Host(new Uri($"rabbitmq://localhost"), host =>
+                    {
+                        host.Username("guest");
+                        host.Password("guest");
+                    });
+                }));
+            });
 
 
             var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");

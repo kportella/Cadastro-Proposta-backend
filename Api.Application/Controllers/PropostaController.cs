@@ -5,6 +5,8 @@ using Api.Service.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using MassTransit;
+using System.Threading.Tasks;
 
 namespace Api.Application.Controllers
 {
@@ -13,17 +15,20 @@ namespace Api.Application.Controllers
     public class PropostaController : Controller
     {
         private readonly ICadastroPropostaRepository _cadastroPropostaRepository;
+        private IBusControl _busControl;
 
-        public PropostaController(ICadastroPropostaRepository cadastroPropostaRepository)
+        public PropostaController(ICadastroPropostaRepository cadastroPropostaRepository, IBusControl busControl)
         {
             _cadastroPropostaRepository = cadastroPropostaRepository;
+            _busControl = busControl;
         }
         [Authorize]
         [HttpPost]
-        public ActionResult Add([FromBody] PropostaDtoCreate propostaDtoCreate)
+        public async Task<ActionResult> Add([FromBody] PropostaDtoCreate propostaDtoCreate)
         {
             try
             {
+                await _busControl.Publish(propostaDtoCreate);
                 var numeroProposta = _cadastroPropostaRepository.Add(propostaDtoCreate);
                 return Ok(numeroProposta);
             }

@@ -5,6 +5,8 @@ using Api.Orm.Interfaces;
 using Api.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MassTransit;
+using System.Threading.Tasks;
 
 namespace Api.Application.Controllers
 {
@@ -13,16 +15,19 @@ namespace Api.Application.Controllers
     public class CalcularPropostaController : Controller
     {
 
+        private IBusControl _busControl;
+
         private readonly ICalcularPropostaRepository _calcularPropostaRepository;
 
-        public CalcularPropostaController(ICalcularPropostaRepository calcularPropostaRepository)
+        public CalcularPropostaController(ICalcularPropostaRepository calcularPropostaRepository, IBusControl busControl)
         {
             _calcularPropostaRepository = calcularPropostaRepository;
+            _busControl = busControl;
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult CalcularProposta([FromBody] CalcularValorDto calcularValorDto)
+        public async Task<ActionResult> CalcularProposta([FromBody] CalcularValorDto calcularValorDto)
         {
 
             try
@@ -35,7 +40,6 @@ namespace Api.Application.Controllers
             }
             catch (Exception e)
             {
-
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }

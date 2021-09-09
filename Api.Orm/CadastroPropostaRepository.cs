@@ -18,7 +18,7 @@ namespace Api.Orm
         public int Add(PropostaDtoCreate propostaDtoCreate)
         {
 
-            string sqlAlterarCliente = @"UPDATE [dbo].[TREINA_CLIENTES]
+            var sqlAlterarCliente = @"UPDATE [dbo].[TREINA_CLIENTES]
                             SET [CPF] = @CPF
                                 ,[NOME] = @NOME
                                 ,[DT_NASCIMENTO] = @DT_NASCIMENTO
@@ -33,7 +33,7 @@ namespace Api.Orm
                                 ,[DATA_ATUALIZACAO] = @DATA_ATUALIZACAO
                             WHERE [CPF] = @CPF";
 
-            string sqlProposta = @"INSERT INTO [dbo].[TREINA_PROPOSTAS]
+            var sqlProposta = @"INSERT INTO [dbo].[TREINA_PROPOSTAS]
                             ([PROPOSTA]
                             ,[CPF]
                             ,[CONVENIADA]
@@ -60,7 +60,7 @@ namespace Api.Orm
                             ,@USUARIO_ATUALIZACAO
                             ,@DATA_ATUALIZACAO)";
 
-            string sqlAlterarProposta = @"UPDATE [dbo].[TREINA_PROPOSTAS]
+            var sqlAlterarProposta = @"UPDATE [dbo].[TREINA_PROPOSTAS]
                                         SET [CONVENIADA] = @CONVENIADA
                                             ,[VLR_SOLICITADO] = @VLR_SOLICITADO
                                             ,[PRAZO] = @PRAZO
@@ -73,7 +73,7 @@ namespace Api.Orm
                                             ,[DATA_ATUALIZACAO] = @DATA_ATUALIZACAO
                                         WHERE [CPF] = @CPF";
 
-            string sqlCliente = @"INSERT INTO [dbo].[TREINA_CLIENTES]
+            var sqlCliente = @"INSERT INTO [dbo].[TREINA_CLIENTES]
                             ([CPF]
                             ,[NOME]
                             ,[DT_NASCIMENTO]
@@ -100,13 +100,13 @@ namespace Api.Orm
                             ,@USUARIO_ATUALIZACAO
                             ,@DATA_ATUALIZACAO)";
 
-            string sqlIncrementarProposta = @"UPDATE [dbo].[TREINA_PARAMETRO]
+            var sqlIncrementarProposta = @"UPDATE [dbo].[TREINA_PARAMETRO]
                                             SET VALOR = VALOR + 1
                                             WHERE PropostaParametros = 'UltimaProposta'
                                             SELECT VALOR from TREINA_PARAMETRO WHERE PropostaParametros = 'UltimaProposta'";
 
-            string sqlEcontrarCPF = "SELECT CPF FROM TREINA_CLIENTES WHERE CPF=@CPF";
-            string sqlEncontrarProposta = "SELECT PROPOSTA FROM TREINA_PROPOSTAS WHERE CPF=@CPF";
+            var sqlEcontrarCPF = "SELECT CPF FROM TREINA_CLIENTES WHERE CPF=@CPF";
+            var sqlEncontrarProposta = "SELECT PROPOSTA FROM TREINA_PROPOSTAS WHERE CPF=@CPF";
 
             TreinaClientesEntity treinaClientesEntity = propostaDtoCreate.TreinaClientesEntity;
             TreinaPropostasEntity treinaPropostasEntity = propostaDtoCreate.TreinaPropostasEntity;
